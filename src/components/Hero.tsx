@@ -4,18 +4,19 @@ import { Button } from '@/components/ui/button';
 const Hero = () => {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-      {/* Animated water background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-water-light via-background to-water-light/30">
-        <div className="absolute inset-0 opacity-30">
+      {/* Dark/Light themed gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-primary/5">
+        {/* Subtle water pattern */}
+        <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full" preserveAspectRatio="none">
             <defs>
-              <pattern id="waves" x="0" y="0" width="100" height="20" patternUnits="userSpaceOnUse">
+              <pattern id="waves" x="0" y="0" width="120" height="24" patternUnits="userSpaceOnUse">
                 <path 
-                  d="M0 10 Q25 0 50 10 T100 10" 
+                  d="M0 12 Q30 0 60 12 T120 12" 
                   fill="none" 
-                  stroke="hsl(var(--primary))" 
+                  stroke="currentColor" 
                   strokeWidth="1"
-                  opacity="0.3"
+                  className="text-primary"
                 />
               </pattern>
             </defs>
@@ -27,7 +28,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl">
           {/* Event badge */}
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-2 mb-6">
             <Calendar className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-foreground">1 de Marzo 2026 · Atlético Echagüe Club</span>
           </div>
@@ -43,17 +44,17 @@ const Hero = () => {
           </h1>
 
           {/* Description */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
             Desafiando al Gigante de Agua. Un evento organizado por la Subcomisión de Nadadores Máster del Atlético Echagüe Club.
           </p>
 
           {/* Event details */}
           <div className="flex flex-wrap gap-4 mb-8">
-            <div className="flex items-center gap-2 bg-card/80 backdrop-blur-sm rounded-lg px-4 py-3 shadow-sm">
+            <div className="flex items-center gap-2 bg-card border border-border rounded-xl px-4 py-3 shadow-sm">
               <MapPin className="w-5 h-5 text-primary" />
               <span className="text-sm font-medium text-foreground">Río Paraná, Entre Ríos</span>
             </div>
-            <div className="flex items-center gap-2 bg-card/80 backdrop-blur-sm rounded-lg px-4 py-3 shadow-sm">
+            <div className="flex items-center gap-2 bg-card border border-border rounded-xl px-4 py-3 shadow-sm">
               <Waves className="w-5 h-5 text-accent" />
               <span className="text-sm font-medium text-foreground">5 km y 2.5 km</span>
             </div>
@@ -61,7 +62,7 @@ const Hero = () => {
 
           {/* CTA buttons */}
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" asChild>
+            <Button size="lg" asChild className="shadow-lg">
               <a href="#inscripcion">Inscribirme ahora</a>
             </Button>
             <Button size="lg" variant="outline" asChild>
