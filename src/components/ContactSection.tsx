@@ -1,11 +1,18 @@
 import { Mail, Instagram } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const ContactSection = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation();
+
   return (
     <section id="contacto" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-12 opacity-0 ${headerVisible ? 'animate-fade-in-up' : ''}`}
+        >
           <span className="text-sm uppercase tracking-wider text-primary font-semibold">Contacto</span>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mt-2">
             ¿Tenés una consulta?
@@ -15,7 +22,10 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div 
+          ref={cardsRef}
+          className={`grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto opacity-0 ${cardsVisible ? 'animate-fade-in-up' : ''}`}
+        >
           <Card className="bg-card hover:shadow-lg transition-shadow">
             <CardContent className="p-6 text-center">
               <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">

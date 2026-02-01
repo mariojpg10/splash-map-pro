@@ -1,12 +1,20 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CreditCard, Users, AlertTriangle, ExternalLink } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const RegistrationSection = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
+
   return (
     <section id="inscripcion" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-12 opacity-0 ${headerVisible ? 'animate-fade-in-up' : ''}`}
+        >
           <span className="text-sm uppercase tracking-wider text-primary font-semibold">Inscripción</span>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mt-2">
             Sumate a la Vuelta 2026
@@ -17,7 +25,10 @@ const RegistrationSection = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div 
+            ref={cardsRef}
+            className={`grid md:grid-cols-2 gap-8 mb-12 opacity-0 ${cardsVisible ? 'animate-fade-in-up' : ''}`}
+          >
             {/* Price card */}
             <Card className="bg-gradient-to-br from-primary to-secondary text-primary-foreground">
               <CardContent className="p-8">
@@ -81,7 +92,10 @@ const RegistrationSection = () => {
           </div>
 
           {/* CTA */}
-          <div className="text-center">
+          <div 
+            ref={ctaRef}
+            className={`text-center opacity-0 ${ctaVisible ? 'animate-scale-in' : ''}`}
+          >
             <Button size="lg" asChild className="gap-2">
               <a 
                 href="https://forms.gle/mTKnEmg75d297PyD6" 
