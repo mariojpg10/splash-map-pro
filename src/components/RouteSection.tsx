@@ -1,12 +1,20 @@
 import RouteMapSVG from './RouteMapSVG';
 import { Card, CardContent } from '@/components/ui/card';
 import { Timer, Users, Droplets } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const RouteSection = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation();
+  const { ref: mapRef, isVisible: mapVisible } = useScrollAnimation();
+
   return (
     <section id="recorrido" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-12 opacity-0 ${headerVisible ? 'animate-fade-in-up' : ''}`}
+        >
           <span className="text-sm uppercase tracking-wider text-primary font-semibold">Recorrido</span>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mt-2">
             Dos distancias, un desafío
@@ -18,7 +26,11 @@ const RouteSection = () => {
         </div>
 
         {/* Route cards */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
+        <div 
+          ref={cardsRef}
+          className={`grid md:grid-cols-2 gap-6 mb-12 opacity-0 ${cardsVisible ? 'animate-fade-in-up' : ''}`}
+          style={{ animationDelay: '0.1s' }}
+        >
           <Card className="bg-card border-accent/30 hover:border-accent transition-colors">
             <CardContent className="p-6">
               <div className="flex items-start justify-between mb-4">
@@ -64,7 +76,10 @@ const RouteSection = () => {
         </div>
 
         {/* Animated map */}
-        <div className="mb-8">
+        <div 
+          ref={mapRef}
+          className={`mb-8 opacity-0 ${mapVisible ? 'animate-scale-in' : ''}`}
+        >
           <RouteMapSVG />
         </div>
 

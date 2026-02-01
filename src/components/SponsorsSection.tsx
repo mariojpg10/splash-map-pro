@@ -1,6 +1,7 @@
-import { useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const sponsors = [
   { name: 'Atlético Echagüe Club', shortName: 'AEC' },
@@ -10,6 +11,9 @@ const sponsors = [
 ];
 
 const SponsorsSection = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: carouselRef, isVisible: carouselVisible } = useScrollAnimation();
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
@@ -25,7 +29,10 @@ const SponsorsSection = () => {
   return (
     <section className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-10">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-10 opacity-0 ${headerVisible ? 'animate-fade-in-up' : ''}`}
+        >
           <span className="text-sm uppercase tracking-wider text-primary font-semibold">
             Nos Apoyan
           </span>
@@ -34,7 +41,10 @@ const SponsorsSection = () => {
           </h2>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
+        <div 
+          ref={carouselRef}
+          className={`relative max-w-4xl mx-auto opacity-0 ${carouselVisible ? 'animate-fade-in-up' : ''}`}
+        >
           {/* Carousel */}
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">

@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { ChevronDown, Shield, Clock, Leaf } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const RegulationsSection = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: highlightsRef, isVisible: highlightsVisible } = useScrollAnimation();
+  const { ref: categoriesRef, isVisible: categoriesVisible } = useScrollAnimation();
 
   const highlights = [
     {
@@ -41,7 +45,10 @@ const RegulationsSection = () => {
   return (
     <section id="reglamento" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-12 opacity-0 ${headerVisible ? 'animate-fade-in-up' : ''}`}
+        >
           <span className="text-sm uppercase tracking-wider text-primary font-semibold">Reglamento</span>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mt-2">
             Reglas del evento
@@ -49,7 +56,10 @@ const RegulationsSection = () => {
         </div>
 
         {/* Highlights */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div 
+          ref={highlightsRef}
+          className={`grid md:grid-cols-3 gap-6 mb-12 opacity-0 ${highlightsVisible ? 'animate-fade-in-up' : ''}`}
+        >
           {highlights.map((item) => (
             <Card key={item.title} className="bg-card">
               <CardContent className="p-6 text-center">
@@ -64,7 +74,10 @@ const RegulationsSection = () => {
         </div>
 
         {/* Categories */}
-        <div className="bg-card rounded-xl p-8 max-w-4xl mx-auto mb-8">
+        <div 
+          ref={categoriesRef}
+          className={`bg-card rounded-xl p-8 max-w-4xl mx-auto mb-8 opacity-0 ${categoriesVisible ? 'animate-fade-in-up' : ''}`}
+        >
           <h3 className="font-serif text-2xl font-bold text-foreground mb-6">Categorías</h3>
           <p className="text-muted-foreground mb-4">Para ambos sexos (edad al 31/12/2026):</p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
