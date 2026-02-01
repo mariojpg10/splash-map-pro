@@ -4,6 +4,7 @@ import RouteSection from '@/components/RouteSection';
 import InfoSection from '@/components/InfoSection';
 import RegulationsSection from '@/components/RegulationsSection';
 import RegistrationSection from '@/components/RegistrationSection';
+import SponsorsSection from '@/components/SponsorsSection';
 import ClubSection from '@/components/ClubSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
@@ -18,6 +19,7 @@ const Index = () => {
         <InfoSection />
         <RegulationsSection />
         <RegistrationSection />
+        <SponsorsSection />
         <ClubSection />
         <ContactSection />
       </main>
