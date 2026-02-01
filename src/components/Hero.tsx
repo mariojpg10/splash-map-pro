@@ -1,5 +1,6 @@
 import { Calendar, MapPin, Waves } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Countdown from '@/components/Countdown';
 
 const Hero = () => {
   return (
@@ -60,8 +61,14 @@ const Hero = () => {
             </div>
           </div>
 
+          {/* Countdown */}
+          <div className="mb-8">
+            <p className="text-sm text-muted-foreground mb-3 text-center md:text-left">Faltan:</p>
+            <Countdown />
+          </div>
+
           {/* CTA buttons */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 justify-center md:justify-start">
             <Button size="lg" asChild className="shadow-lg">
               <a href="#inscripcion">Inscribirme ahora</a>
             </Button>
